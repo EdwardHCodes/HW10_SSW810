@@ -45,8 +45,6 @@ class Student:
         """return a list of values to populate the prettytable for this student"""
         return self.cwid, self.name, sorted(self.courses.keys())
     
-
-
 #Expression to check for grades
 class Instructor:
     pt_hdr: Tuple[str, str, str] = ("CWID", "Name", "Completed Courses")
@@ -65,21 +63,7 @@ class Instructor:
         """
         for course, count in self.courses.items():
             yield self.cwid, self.name, self.dept, course, count
-            
-##This needs to be implemented for HW10
-class Grade:
-    def __init__(self, CWID: int, Course: str, Grade: str):
-        pass
-
-class University:
-    def __init__(self, Students: List: int, Name: str, Major: str):
-        return something
-
-    def __str__(self) -> str:
-        self.Name = Name
-        return something
-
-    
+ 
 class Repository:
     def __init__(self, dir_path: str, ptables: bool=True):
         self.dir_path: str = dir_path
