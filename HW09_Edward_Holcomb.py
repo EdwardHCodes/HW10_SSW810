@@ -57,20 +57,29 @@ class Instructor:
         self.courses: DefaultDict[str, int] = defaultdict(int)  # key: course value: number of students
 
     def add_student(self, Name: str, Course: str, Grade: str): ##Why do we not need to add the grade of the course that the student obtained...?
-        self.name: str = Name
-        self.grade: str = Grade
-        self.course: str = Course
-
+        self.courses[course] += 1
+    
+    def pt_rows(self) -> Iterator[Tuple[str, str, str, str, int]]:
+        """A generator returning rows to be added to the Instructor pretty table
+        The PT
+        """
+        for course, count in self.courses.items():
+            yield self.cwid, self.name, self.dept, course, count
+            
+##This needs to be implemented for HW10
 class Grade:
     def __init__(self, CWID: int, Course: str, Grade: str):
         pass
 
 class University:
     def __init__(self, Students: List: int, Name: str, Major: str):
-        pass
+        return something
+
     def __str__(self) -> str:
         self.Name = Name
+        return something
 
+    
 class Repository:
     def __init__(self, dir_path: str, ptables: bool=True):
         self.dir_path: str = dir_path
@@ -89,10 +98,12 @@ class Repository:
             print("\nStudent Summary")
             self.student_table()
 
-            print("\ninstructors Summary")
+            print("\nInstructors Summary")
             self.instructor_table()
+
     def get_students(self, path: str) -> None:
-        """read students from path and add them to self.students.
+        """
+        read students from path and add them to self.students.
         Allow exceptions from reading the file to flow back to the CALLER
         """
         for cwid, name, major in file_reader(path, 3, sep='\t', header=False):
