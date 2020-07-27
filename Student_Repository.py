@@ -63,7 +63,7 @@ class Instructor:
         """
         for course, count in self.courses.items():
             yield self.cwid, self.name, self.dept, course, count
- 
+
 class Repository:
     def __init__(self, dir_path: str, ptables: bool=True):
         self.dir_path: str = dir_path
