@@ -33,7 +33,7 @@ class Student:
         self.cwid: int = CWID
         self.name: str = Name
         self.major: str = Major
-        self.completed_classes: dict = 
+        self.completed_classes: dict = completed_classes
         self.courses: Dict[str, str] = dict() #NOT A DEFAULT DICTIONARY 
 
     def __str__(self) -> str: #Trying to not just copy the code, and want to try and differientiate my solution.
