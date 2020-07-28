@@ -109,6 +109,7 @@ class Repository:
                 self.instructors[instructor_cwid].add_student(course)
             else:
                 print(f"Found grade for unknown instructor '{instructor_cwid}'")
+
     def student_table(self) -> None:
         """print a PT
         """
@@ -118,9 +119,5 @@ class Repository:
         print(pt)
 
 
-
 def main():
     stevens = Repository("C:\Users\Edward\OneDrive - stevens.edu\STEVENS - SSW810\Week 09\students.txt")
-    test = Respository()
-    njit = 
-
