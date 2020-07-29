@@ -24,10 +24,22 @@ StudentsID Class Grade InstructorID
 majors file
 Major RequiredCourse
 """
+#Class to contain the Majors
 class Major:
+    #pt header row to help generate pretty table
     pt_hdr: Tuple[str, List[str], List[str] = ("Major", "Required Courses", "Elective Courses")
+    #initializes a class of major
+    def __init__(self, major: str):
+        self.major = major
+        self.req_courses = list()
+        self.ele_courses = list()
+    
+    #need a way to add a course
+    #appears that the format
+    def add_course(self, course: str, isreq:
 
-    def pt_row(self) -> Tuple[str, List[str], List[str]]
+    def pt_row(self) -> Tuple[str, List[str], List[str]]:
+        return self.major, self.req_courses, self.ele_courses
 
 #Student Class to store information about each student
 #I worked on this while re-listening to the video, I
@@ -79,6 +91,7 @@ class Repository:
             self.get_students(os.path.join(dir_path, 'students.txt'))
             self.get_instructors(os.path.join(dir_path, 'instructor.txt'))
             self.get_grades(os.path.join(dir_path, 'grades.txt'))
+            self.get_majors(os.path.join(dir_path, 'majors.txt'))
         except ValueError as ve:
             print(ve)
         except FileNotFoundError as fnfe:
