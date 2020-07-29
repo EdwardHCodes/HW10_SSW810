@@ -27,7 +27,9 @@ Major RequiredCourse
 #Class to contain the Majors
 class Major:
     #pt header row to help generate pretty table
-    pt_hdr: Tuple[str, List[str], List[str] = ("Major", "Required Courses", "Elective Courses")
+    pt_hdr: Tuple[str, List[str], List[str]] = ("Major", "Required Courses", "Elective Courses")
+    passing_grades: List[str] = ("A", "A-", "B+", "B", "B-", "C+", "C", "C-")
+
     #initializes a class of major
     def __init__(self, major: str):
         self.major = major
@@ -36,7 +38,9 @@ class Major:
     
     #need a way to add a course
     #appears that the format
-    def add_course(self, course: str, isreq:
+    def add_course(self, course: str, isreq: str):
+        self.courses[course] = major
+
 
     def pt_row(self) -> Tuple[str, List[str], List[str]]:
         return self.major, self.req_courses, self.ele_courses
