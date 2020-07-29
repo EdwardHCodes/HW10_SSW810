@@ -109,8 +109,7 @@ class Repository:
 
             print("\nInstructors Summary")
             self.instructor_table()
-
-        
+   
     def get_majors(self, path:str) -> None:
         """gets majors and required/elective classes"""
         for major, required, course in file_reader(path, 3, sep='\t', header=False):
