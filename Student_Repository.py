@@ -45,7 +45,6 @@ class Major:
         self.req_course = req_course
         self.ele_course = ele_course
 
-
     def pt_row(self) -> Tuple[str, List[str], List[str]]:
         return self.major, self.req_courses, self.ele_courses
 
@@ -110,6 +109,9 @@ class Repository:
 
             print("\nInstructors Summary")
             self.instructor_table()
+    def get_majors(self, path:str) -> None:
+        """gets majors and required/elective classes"""
+        for 
 
     def get_students(self, path: str) -> None:
         """
@@ -142,6 +144,23 @@ class Repository:
         pt: PrettyTable = PrettyTable(field_names=Student.pt_hdr)
         for student in self.students.values():
             pt.add_row(student.pt_row())
+        print(pt)
+    
+    def instructor_table(self) -> None:
+        """instructor table
+        """
+        pt: PrettyTable = PrettyTable(field_names=Instructor.pt_hdr)
+        for instructor in self.instructors.values():
+            for row in instructor.pt_rows():
+                pt.add_row(row)
+        print(pt)
+    def majors_table(self) -> None:
+        """instructor table
+        """
+        pt: PrettyTable = PrettyTable(field_names=Instructor.pt_hdr)
+        for major in self.majors.values():
+            for row in majors.pt_rows():
+                pt.add_row(row)
         print(pt)
 
 
