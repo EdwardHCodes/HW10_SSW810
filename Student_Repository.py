@@ -39,7 +39,11 @@ class Major:
     #need a way to add a course
     #appears that the format
     def add_course(self, course: str, isreq: str):
-        self.courses[course] = major
+        self.major[course] = course
+    
+    def isreq(self):
+        self.req_course = req_course
+        self.ele_course = ele_course
 
 
     def pt_row(self) -> Tuple[str, List[str], List[str]]:
