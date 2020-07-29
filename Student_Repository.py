@@ -24,6 +24,11 @@ StudentsID Class Grade InstructorID
 majors file
 Major RequiredCourse
 """
+class Major:
+    pt_hdr: Tuple[str, List[str], List[str] = ("Major", "Required Courses", "Elective Courses")
+
+    def pt_row(self) -> Tuple[str, List[str], List[str]]
+
 #Student Class to store information about each student
 #I worked on this while re-listening to the video, I
 #I am still trying to wrap my head around actually implementing public/private methods
