@@ -28,12 +28,11 @@ Major RequiredCourse
 #I worked on this while re-listening to the video, I
 #I am still trying to wrap my head around actually implementing public/private methods
 class Student:
-    pt_hdr: Tuple[str, str, str] = ("CWID", "Name", "Completed Courses")
+    pt_hdr: Tuple[str, str, str, str, str] = ("CWID", "Name", "Completed Courses", "Required Courses", "GPA")
     def __init__(self, CWID: int, Name: str, Major: str) -> None:
         self.cwid: int = CWID
         self.name: str = Name
         self.major: str = Major
-        self.completed_classes: dict = completed_classes
         self.courses: Dict[str, str] = dict() #NOT A DEFAULT DICTIONARY 
 
     def __str__(self) -> str: #Trying to not just copy the code, and want to try and differientiate my solution.
