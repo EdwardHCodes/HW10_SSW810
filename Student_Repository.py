@@ -28,7 +28,7 @@ Major RequiredCourse
 #I worked on this while re-listening to the video, I
 #I am still trying to wrap my head around actually implementing public/private methods
 class Student:
-    pt_hdr: Tuple[str, str, str, str, str] = ("CWID", "Name", "Completed Courses", "Required Courses", "GPA")
+    pt_hdr: Tuple[str, str, str, str, str] = ("CWID", "Name", "Major", "Completed Courses", "Required Courses", "GPA")
     def __init__(self, CWID: int, Name: str, Major: str) -> None:
         self.cwid: int = CWID
         self.name: str = Name
