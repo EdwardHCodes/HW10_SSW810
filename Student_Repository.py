@@ -28,13 +28,12 @@ Major RequiredCourse
 class Major:
     #pt header row to help generate pretty table
     pt_hdr: Tuple[str, List[str], List[str]] = ("Major", "Required Courses", "Elective Courses")
-    passing_grades: List[str] = ("A", "A-", "B+", "B", "B-", "C+", "C", "C-")
-
+    
     #initializes a class of major
     def __init__(self, major: str):
         self.major = major
-        self.req_courses = list()
-        self.ele_courses = list()
+        self.req: List[str] = list()
+        self.ele List[str] = list()
     
     #need a way to add a course
     #appears that the format
@@ -42,8 +41,8 @@ class Major:
         self.major[course] = course
     
     def isreq(self):
-        self.req_course = req_course
-        self.ele_course = ele_course
+        self.req = req
+        self.ele = ele
 
     def pt_row(self) -> Tuple[str, List[str], List[str]]:
         return self.major, self.req_courses, self.ele_courses
@@ -53,6 +52,7 @@ class Major:
 #I am still trying to wrap my head around actually implementing public/private methods
 class Student:
     pt_hdr: Tuple[str, str, str, str, str] = ("CWID", "Name", "Major", "Completed Courses", "Required Courses", "GPA")
+    passing_grades: List[str] = ("A", "A-", "B+", "B", "B-", "C+", "C", "C-")
     def __init__(self, CWID: int, Name: str, Major: str) -> None:
         self.cwid: int = CWID
         self.name: str = Name
