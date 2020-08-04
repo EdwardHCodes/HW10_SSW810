@@ -1,10 +1,10 @@
 """
 @Author: Edward Holcomb
-Homework 09
+Homework 10
 This is an assignment that is part of the homework assignment
 """
 import os
-from typing import Any, List, Tuple, DefaultDict, Optional, Sequence, Iterator
+from typing import Any, List, Tuple, DefaultDict, Optional, Sequence, Iterator, Set
 import collections
 from collections import defaultdict
 import prettytable as ptables
@@ -32,8 +32,8 @@ class Major:
     #initializes a class of major
     def __init__(self, major: str):
         self.major = major
-        self.req: List[str] = list()
-        self.ele List[str] = list()
+        self.req: Set(str) = set()
+        self.ele: Set(str) = set()
     
     #need a way to add a course
     #appears that the format
@@ -91,8 +91,8 @@ class Instructor:
 class Repository:
     def __init__(self, dir_path: str, ptables: bool=True):
         self.dir_path: str = dir_path
-        self.Student: str = Dict[str, Student] = dict() #This is the string and an instance of class student,
-        self.instructor: str = Dict[str, instructor] = dict()
+        self.student: str = Dict[str, Student] = defaultdict() #This is the string and an instance of class student,
+        self.instructor: str = Dict[str, Instructor] = defaultdict()
         # I am a little unfamiliar with how we are mapping this self.student and self.instructor because we dont pass those in as parameters in the __init__ method.
         try:
             self.get_students(os.path.join(dir_path, 'students.txt'))
