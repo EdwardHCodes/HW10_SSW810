@@ -53,11 +53,17 @@ class Major:
 class Student:
     pt_hdr: Tuple[str, str, str, str, str] = ("CWID", "Name", "Major", "Completed Courses", "Required Courses", "GPA")
     passing_grades: List[str] = ("A", "A-", "B+", "B", "B-", "C+", "C", "C-")
-    def __init__(self, CWID: int, Name: str, Major: str) -> None:
-        self.cwid: int = CWID
+    #In order to create a instance of class student, a student to me/us is an entity with a CWID, Name, and a Major.
+    #Therefore we need that in the dunder init method.
+    def __init__(self, cwid: int, Name: str, Major: str) -> None:
+        self.cwid: int = cwid
         self.name: str = Name
         self.major: str = Major
-        self.courses: Dict[str, str] = dict() #NOT A DEFAULT DICTIONARY 
+        self.courses: Dict[str, str] = dict()  # NOT A DEFAULT DICTIONARY
+        #I think if any of the fields are blank we should raise an exception
+        if cwid == " " or Name == " ":
+            raise ValueError("Each CWID and Name must contain information!")
+ 
 
     def __str__(self) -> str: #Trying to not just copy the code, and want to try and differientiate my solution.
         return f"{Name} has the student ID of {CWID} and is a {Major}"
@@ -71,9 +77,10 @@ class Student:
     
 #Expression to check for grades
 class Instructor:
+    ##Little Confused why we used Tuple of Strings for the Student Class but in the solution we used List of strings?
     pt_hdr: Tuple[str, str, str] = ("CWID", "Name", "Completed Courses")
-    def __init__(self, CWID: int, Name: str, Courses: dict, Department: str):
-        self.cwid: int = CWID
+    def __init__(self, cwid: int, Name: str, Courses: dict, Department: str):
+        self.cwid: int = cwid
         self.name: str = Name
         self.dept: str = Department
         self.courses: DefaultDict[str, int] = defaultdict(int)  # key: course value: number of students
