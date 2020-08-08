@@ -91,14 +91,14 @@ class Instructor:
 class Repository:
     def __init__(self, dir_path: str, ptables: bool=True):
         self.dir_path: str = dir_path
-        self.student: str = Dict[str, Student] = defaultdict() #This is the string and an instance of class student,
-        self.instructor: str = Dict[str, Instructor] = defaultdict()
+        self.student: Dict[str, Student] = defaultdict() #This is the string and an instance of class student,
+        self.instructor: Dict[str, Instructor] = defaultdict()
         # I am a little unfamiliar with how we are mapping this self.student and self.instructor because we dont pass those in as parameters in the __init__ method.
         try:
+            self.get_majors(os.path.join(dir_path, 'majors.txt'))
             self.get_students(os.path.join(dir_path, 'students.txt'))
             self.get_instructors(os.path.join(dir_path, 'instructor.txt'))
             self.get_grades(os.path.join(dir_path, 'grades.txt'))
-            self.get_majors(os.path.join(dir_path, 'majors.txt'))
         except ValueError as ve:
             print(ve)
         except FileNotFoundError as fnfe:
