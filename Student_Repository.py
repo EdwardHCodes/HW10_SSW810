@@ -64,7 +64,6 @@ class Student:
         if cwid == " " or Name == " ":
             raise ValueError("Each CWID and Name must contain information!")
  
-
     def __str__(self) -> str: #Trying to not just copy the code, and want to try and differientiate my solution.
         return f"{Name} has the student ID of {CWID} and is a {Major}"
 
