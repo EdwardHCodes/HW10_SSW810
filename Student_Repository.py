@@ -166,6 +166,24 @@ class Repository:
                 pt.add_row(row)
         print(pt)
 
+    def student_grade_table_db_data(self, dbpath) -> Iterator[Tuple[str, str, str, str, str]]:
+        query = """ SELECT s.name AS "Student's Name", s.cwid, g.course, g.grade, i.name AS "Teacher's Name"
+                    FROM students AS s
+                        JOIN grades AS g ON s.cwid=g.StudentCWID
+                        JOIN instructors AS i ON g.InstructorCWID=i.CWID
+                        ORDER BY s.name"""
+        for row in db.execute(query):
+            yield row
+
+    
+    def student_grade_table_db(self, dbpath):
+        #function to generate a pretty table to that comes from the query above, joining grade table and student table in sqlite.
+        pt = PrettyTable(fields = ["Name", "CWID", "Course", "Grade", "Instructor"])
+        for row in self.student_grades_table_db_data(dbpath):
+            pt.add_row(row)
+        print(pt)
+
 
 def main():
     stevens = Repository("C:\Users\Edward\OneDrive - stevens.edu\STEVENS - SSW810\Week 09\students.txt")
+    db_file: str = "C:\Users\Edward\Documents\GitHub\SSW810\HW11DB.sqlite"
