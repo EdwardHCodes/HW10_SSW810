@@ -8,8 +8,7 @@ from typing import Any, List, Tuple, DefaultDict, Optional, Sequence, Iterator, 
 import collections
 from collections import defaultdict
 import prettytable as ptables
-from HW08_Edward_Holcomb import file_reader
-
+from file_reader import file_reader
 """
 We will be using 4 data files:
 students.txt
@@ -55,13 +54,13 @@ class Student:
     passing_grades: List[str] = ("A", "A-", "B+", "B", "B-", "C+", "C", "C-")
     #In order to create a instance of class student, a student to me/us is an entity with a CWID, Name, and a Major.
     #Therefore we need that in the dunder init method.
-    def __init__(self, cwid: int, Name: str, Major: str) -> None:
+    def __init__(self, cwid: int, name: str, major: str) -> None:
         self.cwid: int = cwid
-        self.name: str = Name
-        self.major: str = Major
-        self.courses: Dict[str, str] = dict()  # NOT A DEFAULT DICTIONARY
+        self.name: str = name
+        self.major: str = major
+        self.courses: Dict[str, str] = dict()  # NOT A DEFAULT DICTIONARY, this maps the keys (courses) to values (grades)
         #I think if any of the fields are blank we should raise an exception
-        if cwid == " " or Name == " ":
+        if cwid == " " or name == " ":
             raise ValueError("Each CWID and Name must contain information!")
  
     def __str__(self) -> str: #Trying to not just copy the code, and want to try and differientiate my solution.
@@ -77,14 +76,14 @@ class Student:
 #Expression to check for grades
 class Instructor:
     ##Little Confused why we used Tuple of Strings for the Student Class but in the solution we used List of strings?
-    pt_hdr: Tuple[str, str, str] = ("CWID", "Name", "Completed Courses")
-    def __init__(self, cwid: int, Name: str, Courses: dict, Department: str):
+    pt_hdr: List[str] = ("CWID", "Name", "Dept")
+    def __init__(self, cwid: int, name: str, courses: dict, department: str):
         self.cwid: int = cwid
-        self.name: str = Name
-        self.dept: str = Department
+        self.name: str = name
+        self.dept: str = department
         self.courses: DefaultDict[str, int] = defaultdict(int)  # key: course value: number of students
 
-    def add_student(self, Name: str, Course: str, Grade: str): ##Why do we not need to add the grade of the course that the student obtained...?
+    def add_student(self, name: str, Course: str, Grade: str): ##Why do we not need to add the grade of the course that the student obtained...?
         self.courses[course] += 1
     
     def pt_rows(self) -> Iterator[Tuple[str, str, str, str, int]]:
