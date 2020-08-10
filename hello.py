@@ -14,7 +14,7 @@ def see_ya() -> str:
 
 @app.route("/sample_template")
 def template_demo() -> str:
-    return render_template('parameters.html',
+    return render_template('/templates/parameters.html',
                             my_header="My Stevens Repository",
                             my_param="My custom parameter")
 app.run(debug=True)
