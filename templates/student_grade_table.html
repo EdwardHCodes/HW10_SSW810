@@ -6,12 +6,12 @@
             <th>Name</th>
             <th>Major</th>
             <th>Completed Courses</th>
-            {% for cwid, name, major, completed_courses in sequence %}
+            {% for student in students %}
             <tr>
-                <td> {{ cwid }} </td>
-                <td> {{ name }} </td>
-                <td> {{ major }} </td>
-                <td> {{ completed_courses }} </td>
+                <td> {{ student.cwid }} </td>
+                <td> {{ student.name }} </td>
+                <td> {{ student.major }} </td>
+                <td> {{ student.completed_courses }} </td>
             </tr>
             {% endfor %}
         </table>
