@@ -1,12 +1,11 @@
 """
-filereader
+@Author:Edward
+This is a program to read files.
 """
 from typing import Any, List, Tuple, DefaultDict, Optional, Sequence, Iterator
 import collections
 from collections import defaultdict
 from datetime import datetime
-import prettytable
-
 
 def file_reader(path, fields, sep=',', header=False) -> Iterator[Tuple[str]]:
     ##Function takes in a file and reads line by line using a generator/iterator
@@ -37,3 +36,4 @@ def file_reader(path, fields, sep=',', header=False) -> Iterator[Tuple[str]]:
         f.close()
     except:
         FileNotFoundError(f"Can not find " + {path} + " File not found Error!")
+

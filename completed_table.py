@@ -7,7 +7,6 @@ DB_FILE: str = 'Homework11_DB'
 app: Flask = Flask(__name__)
 
 @app.route('/completed')
-
 def completed_courses() -> str:
     query = """select s.cwid s.name, s.major, count(*) as Complete from students as s join grades as g on s.cwid=g.studentcwid group by s.name order by s.name"""
 
