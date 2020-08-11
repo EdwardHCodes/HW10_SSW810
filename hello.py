@@ -10,7 +10,7 @@ def hello() -> str:
 def see_ya() -> str:
     return "See you later!"
 
-@app.route("/sample_template")
+@app.route("/student_grade_table")
 def template_demo() -> str:
     return render_template('/student_grade_table.html',
                             my_header="My Stevens Repository",

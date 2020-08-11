@@ -6,12 +6,14 @@
             <th>Name</th>
             <th>Major</th>
             <th>Completed Courses</th>
+            {% for cwid, name, major, completed_courses in sequence %}
             <tr>
                 <td> {{ cwid }} </td>
                 <td> {{ name }} </td>
                 <td> {{ major }} </td>
                 <td> {{ completed_courses }} </td>
             </tr>
+            {% endfor %}
         </table>
     </body>
 </html>
