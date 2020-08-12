@@ -28,15 +28,7 @@ Major RequiredCourse
 class Major:
     #pt header row to help generate pretty table
     passing_grades: List[str] = ("A", "A-", "B+", "B", "B-", "C+", "C", "C-")
-    numerical_grades: Dict[str, float] = {'A': 4.0, 'A-': 3.75,
-
-    'B+': 3.25, 'B': 3.0, 'B-': 2.75,
-
-    'C+': 2.25, 'C': 2.0, 'C-': 0,
-
-    'D+': 0, 'D': 0, 'D-': 0,
-
-    'F': 0}
+    numerical_grades: Dict[str, float] = {'A': 4.0, 'A-': 3.75, 'B+': 3.25, 'B': 3.0, 'B-': 2.75, 'C+': 2.25, 'C': 2.0, 'C-': 0, 'D+': 0, 'D': 0, 'D-': 0,'F': 0}
     #To calculate Student GPA
     #Take Average of the the students courses divided by the total possible score
     #student takes 5 courses and makes B, 3.0, 15.0/20.0
