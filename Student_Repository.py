@@ -28,8 +28,7 @@ Major RequiredCourse
 class Major:
     #pt header row to help generate pretty table
     passing_grades: List[str] = ("A", "A-", "B+", "B", "B-", "C+", "C", "C-")
-    numerical_grades: Dict[str, float] = {
-    'A': 4.0, 'A-': 3.75,
+    numerical_grades: Dict[str, float] = {'A': 4.0, 'A-': 3.75,
 
     'B+': 3.25, 'B': 3.0, 'B-': 2.75,
 
@@ -118,10 +117,8 @@ class Student:
     def pt_row(self) -> Tuple[str, str, str, List[str], List[str], List[str], float]:
         """return a list of values to populate the prettytable for this student"""
         return self.cwid, self.name, self.major, sorted(self.major.passed(self.courses).keys()),\
-            sorted(self.courses.keys()), self.major.remain_req(self.courses), self.major.remain_ele(self.courses), self.major.gpa(courses)
-
-    ##Three checks, is it required, is it elected, GPA self.num self.denom 
-    ##calculate remaining required, GPA
+            sorted(self.courses.keys()), self.major.remain_req(self.courses), \
+            self.major.remain_ele(self.courses), self.major.gpa(courses)
 
 
 #Expression to check for grades
@@ -243,5 +240,5 @@ class Repository:
 
 
 def main():
-    stevens = Repository("C:\Users\Edward\OneDrive - stevens.edu\STEVENS - SSW810\Week 09\students.txt")
-    db_file: str = "C:\Users\Edward\Documents\GitHub\SSW810\HW11DB.sqlite"
+    stevens = Repository(r"C:\Users\Edward\OneDrive - stevens.edu\STEVENS - SSW810\Week 09\students.txt")
+    db_file: str = r"C:\Users\Edward\Documents\GitHub\SSW810\HW11DB"
