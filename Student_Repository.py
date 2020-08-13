@@ -4,11 +4,11 @@ Homework 11
 This is an assignment that is part of the homework assignment
 """
 import os
-from typing import Any, List, Tuple, DefaultDict, Optional, Sequence, Iterator
+from typing import Any, List, Tuple, Dict, DefaultDict, Optional, Sequence, Iterator
 import collections
 from collections import defaultdict
-import prettytable as ptables
-from HW08_Edward_Holcomb import file_reader
+from prettytable import PrettyTable
+from file_reader import file_reader
 
 """
 We will be using 4 data files:
@@ -57,8 +57,8 @@ class Major:
     def remain_req(self, courses: Dict[str, str]) -> List[str]:
         passed_courses: Dict[str, str] = self.passed(courses)
         return sorted(self.req - set(passed_courses.keys()))
-    #REmaining Elective COurses
-    def remain_elec(self) -> List[str]:
+    #REmaining Elective Courses
+    def remain_ele(self, courses: Dict[str, str]) -> List[str]:
         passed_courses: Dict[str, str] = self.passed(courses)
         #are there any courses in common between self.req and pass_courses.keys()
         if self.ele.intersection(set(passed_courses.keys())):
@@ -93,11 +93,11 @@ class Major:
 #I worked on this while re-listening to the video, I
 #I am still trying to wrap my head around actually implementing public/private methods
 class Student:
-    pt_hdr: Tuple[str, str, str, List[str], List[str]] = ("CWID", "Name", "Major", "Completed Courses", "Remaining Required", "Remaining Electives", "GPA")
-    def __init__(self, cwid: int, name: str, major: Major) -> None:
-        self.cwid: int = cwid
+    pt_hdr: Tuple[str, str, str, List[str], List[str], List[str], float] = ("CWID", "Name", "Major", "Completed Courses", "Remaining Required", "Remaining Electives", "GPA")
+    def __init__(self, cwid: str, name: str, major: Major) -> None:
+        self.cwid: str = cwid
         self.name: str = name
-        self.major: str = major
+        self.major: Major = Major(major)
         self.courses: Dict[str, str] = dict() #NOT A DEFAULT DICTIONARY Key:Value Course:Grade
 
     def __str__(self) -> str: #Trying to not just copy the code, and want to try and differientiate my solution.
@@ -106,11 +106,10 @@ class Student:
     def add_course(self, course: str, grade: str) -> None:
         self.courses[course] = grade
     
-    def pt_row(self) -> Tuple[str, str, str, List[str], List[str], List[str], float]:
+    def pt_row(self) -> Tuple[str, str, str, List[str], List[str], List[str], List[str], float]:
         """return a list of values to populate the prettytable for this student"""
-        return self.cwid, self.name, self.major, sorted(self.major.passed(self.courses).keys()),\
-            sorted(self.courses.keys()), self.major.remain_req(self.courses), \
-            self.major.remain_ele(self.courses), self.major.gpa(courses)
+        return self.cwid, self.name, self.major.major, sorted(self.major.passed(self.courses).keys()), self.major.remain_req(self.courses), \
+            self.major.remain_ele(self.courses), self.major.gpa(self.courses)
 
 
 #Expression to check for grades
@@ -134,11 +133,13 @@ class Instructor:
 
 class Repository:
     def __init__(self, dir_path: str, ptables: bool=True):
+        print("WeMadeIt!")
         self.dir_path: str = dir_path
         self.students: Dict[str, Student] = dict() #This is the string and an instance of class student,
         self.instructors: Dict[str, Instructor] = dict()
         self.majors: Dict[str, Major] = dict() ##
         # I am a little unfamiliar with how we are mapping this self.student and self.instructor because we dont pass those in as parameters in the __init__ method.
+        
         try:
             self.get_majors(os.path.join(dir_path, 'majors.txt'))
             self.get_students(os.path.join(dir_path, 'students.txt'))
@@ -151,7 +152,6 @@ class Repository:
         if ptables:
             print("\nStudent Summary")
             self.student_table()
-
             print("\nInstructors Summary")
             self.instructor_table()
    
@@ -160,7 +160,7 @@ class Repository:
         for major, required, course in file_reader(path, 3, sep='\t', header=False):
             if major not in self.majors:
                 self.majors[major] = Major(major)
-            self.majors[major].add_course(course, isreq)
+            self.majors[major].add_course(course, required)
 
     def get_students(self, path: str) -> None:
         """
@@ -232,5 +232,8 @@ class Repository:
 
 
 def main():
-    stevens = Repository(r"C:\Users\Edward\OneDrive - stevens.edu\STEVENS - SSW810\Week 09\students.txt")
+    Repository(r"C:\Users\Edward\Documents\GitHub\SSW810\\")
     db_file: str = r"C:\Users\Edward\Documents\GitHub\SSW810\HW11DB"
+
+if __name__ == "__main__":
+    main()
