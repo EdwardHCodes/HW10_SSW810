@@ -15,6 +15,7 @@ def file_reader(path, fields, sep=',', header=False) -> Iterator[Tuple[str]]:
     ##Step 2: split the lines \n, split at the separator
     ##Step 3: implementing next()
     ##try:
+    i = 0
     f = open(path, "r")
     #i to track which line of file
     while True:
@@ -30,6 +31,7 @@ def file_reader(path, fields, sep=',', header=False) -> Iterator[Tuple[str]]:
             #fields - intended fields
             #len(line) - might need to be variable, actual fields
         else:
+            i += 1
             yield line
     f.close()
     ##except:

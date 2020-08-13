@@ -114,17 +114,17 @@ class Student:
 
 #Expression to check for grades
 class Instructor:
-    pt_hdr: Tuple[str, str, str] = ("CWID", "Name", "Completed Courses")
-    def __init__(self, cwid: int, name: str, courses: dict, department: str):
+    pt_hdr: Tuple[str, str, str, List[str], str] = ("CWID", "Name", "Department", "Courses", "Count")
+    def __init__(self, cwid: int, name: str, courses: dict, dept: str):
         self.cwid: int = cwid
         self.name: str = name
-        self.dept: str = department
+        self.dept: str = dept
         self.courses: DefaultDict[str, int] = defaultdict(int)  # key: course value: number of students
 
     def add_student(self, Name: str, Course: str, Grade: str): ##Why do we not need to add the grade of the course that the student obtained...?
         self.courses[course] += 1
     
-    def pt_rows(self) -> Iterator[Tuple[str, str, str, str, int]]:
+    def pt_rows(self) -> Iterator[Tuple[str, str, str, List[str], str]]:
         """A generator returning rows to be added to the Instructor pretty table
         The PT
         """
@@ -139,11 +139,10 @@ class Repository:
         self.instructors: Dict[str, Instructor] = dict()
         self.majors: Dict[str, Major] = dict() ##
         # I am a little unfamiliar with how we are mapping this self.student and self.instructor because we dont pass those in as parameters in the __init__ method.
-        
         try:
             self.get_majors(os.path.join(dir_path, 'majors.txt'))
             self.get_students(os.path.join(dir_path, 'students.txt'))
-            self.get_instructors(os.path.join(dir_path, 'instructor.txt'))
+            self.get_instructors(os.path.join(dir_path, 'instructors.txt'))
             self.get_grades(os.path.join(dir_path, 'grades.txt'))
         except ValueError as ve:
             print(ve)
@@ -172,7 +171,7 @@ class Repository:
     
     def get_instructors(self, path:str):
         for cwid, name, dept in file_reader(path, 3, sep='\t', header=False):
-            self.instructors[cwid] = Instructor(cwid, name, dept)
+            self.instructor[cwid] = Instructor(cwid, name, dept)
 
     def get_grades(self, path: str):
         """reads GRADES similar to students doc string
