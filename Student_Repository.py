@@ -1,8 +1,4 @@
-"""
-@Author: Edward Holcomb
-Homework 11
-This is an assignment that is part of the homework assignment
-"""
+
 import os
 from typing import Any, List, Tuple, Dict, DefaultDict, Optional, Sequence, Iterator
 import collections
@@ -199,8 +195,7 @@ class Repository:
         """
         pt: PrettyTable = PrettyTable(field_names=Instructor.pt_hdr)
         for instructor in self.instructors.values():
-            for row in instructor.pt_rows():
-                pt.add_row(row)
+            pt.add_row(instructor.pt_row())
         print(pt)
 
     def majors_table(self) -> None:
