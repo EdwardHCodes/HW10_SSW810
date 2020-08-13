@@ -124,7 +124,7 @@ class Instructor:
     def add_student(self, Name: str, Course: str, Grade: str): ##Why do we not need to add the grade of the course that the student obtained...?
         self.courses[course] += 1
     
-    def pt_rows(self) -> Iterator[Tuple[str, str, str, List[str], str]]:
+    def pt_rows(self) -> Tuple[str, str, str, List[str], str]:
         """A generator returning rows to be added to the Instructor pretty table
         The PT
         """
@@ -171,7 +171,7 @@ class Repository:
     
     def get_instructors(self, path:str):
         for cwid, name, dept in file_reader(path, 3, sep='\t', header=False):
-            self.instructor[cwid] = Instructor(cwid, name, dept)
+            self.instructors[cwid] = Instructor(cwid, name, dept)
 
     def get_grades(self, path: str):
         """reads GRADES similar to students doc string
